@@ -9,7 +9,7 @@ from bokuao_blog import get_latest_blog_url, parse_blog_detail
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHANNEL_ID")  # Replace with your actual chat ID
+CHANNEL_ID = os.getenv("CHANNEL_ID")  # Replace with your actual chat ID
 CONFIG_FILE = 'blog_config.json'
 
 def load_config():
@@ -22,7 +22,7 @@ def save_config(config):
 
 def send_telegram_message(text):
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", params={
-        "chat_id": CHAT_ID,
+        "CHANNEL_ID": CHANNEL_ID,
         "text": text
     })
 
@@ -44,7 +44,7 @@ def send_media_group(images, title, url, writer, date):
     requests.post(
         f"https://api.telegram.org/bot{BOT_TOKEN}/sendMediaGroup",
         json={
-            "chat_id": CHAT_ID,
+            "CHANNEL_ID": CHANNEL_ID,
             "media": media
         }
     )
@@ -52,7 +52,7 @@ def send_media_group(images, title, url, writer, date):
 
 def send_telegram_photo(photo_url):
     requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto", params={
-        "chat_id": CHAT_ID,
+        "CHANNEL_ID": CHANNEL_ID,
         "photo": photo_url
     })
 
